@@ -22,6 +22,7 @@ const Home = () => {
             <Features></Features>
             <Footer></Footer>
         </div>
+        
     );
 };
 
