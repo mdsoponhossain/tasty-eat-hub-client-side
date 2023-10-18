@@ -4,11 +4,18 @@ import { useState } from "react";
 const AddProduct = () => {
     const [rating,setRating] = useState('');
     const [type ,setType] = useState(' ');
+    const [brand,setBrand] = useState(' ');
 
     const Rating =e=>{
         
        const theRating = e.target.value;
        setRating(theRating)
+    }
+
+
+    const brandNameHandle =e=>{
+        const brand = e.target.value;
+        setBrand(brand)
     }
 
 
@@ -28,6 +35,7 @@ const AddProduct = () => {
         const productDetails = {photo,name,price,description}
         productDetails.rating = rating
         productDetails.type = type
+        productDetails.brand =brand;
        
         console.log(productDetails)
     }
@@ -62,6 +70,21 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
+                            <span className="label-text">Select Brand</span>
+                        </label>
+                        <select name="brand" id="brand" onChange={brandNameHandle}  >
+                            <option value="Coca-Cola">Coca-Cola</option>
+                            <option value="McDonald's">McDonald's</option>
+                            <option value="Starbucks">Starbucks</option>
+                            <option value="PepsiCo">PepsiCo</option>
+                            <option value="Nestle">Nestle</option>
+                            <option value="Kellogg's">Kellogg's</option>
+
+                        </select>
+
+                    </div>
+                    <div className="form-control">
+                        <label className="label">
                             <span className="label-text">Rating(out of 5)</span>
                         </label>
                         <select name="type" id="type" onChange={Rating} >
@@ -75,7 +98,7 @@ const AddProduct = () => {
                     </div>
                     <div className="form-control">
                         <label className="label">
-                            <span className="label-text">Product Name</span>
+                            <span className="label-text">Product Type</span>
                         </label>
                         <select name="type" id="type" onChange={productType}>
                             <option value="food">Food</option>
@@ -85,8 +108,10 @@ const AddProduct = () => {
 
                     </div>
                 </div>
-                <div className="w-3/4 mx-auto" >
-                    <textarea className="border-4 pl-3" name="description" placeholder="Write description here..." cols="80" rows="5"></textarea>
+                <div className="" >
+                    <textarea className="border-4 pl-3" name="description" placeholder="Write description here..." cols="60"  rows="5">
+
+                    </textarea>
                 </div>
                     
                 <div className="form-control mt-6">
