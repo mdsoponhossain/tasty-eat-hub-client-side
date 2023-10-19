@@ -1,18 +1,32 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import BrandNameCard from "../BrandNameCard/BrandNameCard";
-import { useLoaderData } from "react-router-dom";
+// import { useLoaderData } from "react-router-dom";
+import { AuthContext } from "../../ContextProvider/ContextProvider";
 
 
 const BrandNameCards = () => {
-    const loadedData = useLoaderData();
-    console.log(loadedData)
+    /* const loadedData = useLoaderData();
+    console.log(loadedData) */
+
     const [brands ,setBrands] = useState([]);
+     
+    const {brandName} = useContext(AuthContext)
+    console.log(brandName)
+
     useEffect(()=>{
         fetch('data.json')
         .then(res=>res.json())
         .then(data=>setBrands(data))
-    },[])
-    console.log(brands)
+    },[]);
+   
+
+    
+
+
+
+
+
+    // console.log(brands)
     return (
         <div>
             <h2>Our brands ..</h2>

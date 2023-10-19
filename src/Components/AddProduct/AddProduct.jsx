@@ -36,8 +36,17 @@ const AddProduct = () => {
         productDetails.rating = rating
         productDetails.type = type
         productDetails.brand =brand;
-       
         console.log(productDetails)
+        fetch('http://localhost:5000/product',{
+            method:'POST',
+            headers:{'content-type':'application/json'},
+            body:JSON.stringify(productDetails)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+        })
+       
     }
 
 
