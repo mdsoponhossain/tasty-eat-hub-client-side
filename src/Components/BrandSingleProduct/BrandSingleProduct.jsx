@@ -7,11 +7,24 @@ import { FaStar } from 'react-icons/fa';
 
 
 const BrandSingleProduct = ({ product }) => {
-    const { setDetails } = useContext(AuthContext)
+    const { setDetails,user } = useContext(AuthContext)
     console.log(product)
     const { photo, name, brand, price, rating, type, _id } = product;
 
-
+    const addToCart = ()=>{
+        delete product._id ;
+        product.userEmail =user?.email;
+        console.log(product)
+        fetch("http://localhost:5000/userCart",{
+            method:'POST',
+            headers:{'content-type':'application/json'},
+            body:JSON.stringify(product)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data)
+        })
+    }
 
     return (
         <div className="card  bg-base-100 shadow-xl">
@@ -26,7 +39,7 @@ const BrandSingleProduct = ({ product }) => {
 
                 <div className="grid grid-cols-2">
                     <div className="card-actions justify-center">
-                        <Link to='/details'><button onClick={() => setDetails(_id)} className="btn btn-secondary">Add to Cart</button></Link>
+                        <Link><button onClick={addToCart} className="btn btn-secondary">Add to Cart</button></Link>
                     </div>
                     <div className="card-actions justify-center">
                         <Link to='/details'><button onClick={() => setDetails(_id)} className="btn btn-secondary">Details</button></Link>
