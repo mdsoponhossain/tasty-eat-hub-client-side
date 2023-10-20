@@ -1,5 +1,7 @@
 
+import { onAuthStateChanged } from "firebase/auth";
 import { createContext, useState } from "react";
+import auth from "../Firebase/Firebase.config";
 
 
 
@@ -10,10 +12,7 @@ export const AuthContext = createContext()
 const ContextProvider = ({ children }) => {
     const [brandName, setBrandName] = useState('')
     const [details, setDetails] = useState('');
-  
-
-
-
+    
    
 
 
@@ -22,6 +21,7 @@ const ContextProvider = ({ children }) => {
         brandName,
         setDetails,
         details
+        
         
     }
 
