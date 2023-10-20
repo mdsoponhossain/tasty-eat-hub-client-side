@@ -14,7 +14,7 @@ const MyCart = () => {
             console.log(data)
             setAddCarts(data)
         })
-    },[])
+    },[user?.email])
     return (
         <div>
             <h3>This is the My cart component:{addCarts.length} </h3>

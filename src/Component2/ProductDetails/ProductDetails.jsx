@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../ContextProvider/ContextProvider";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { FaStar } from 'react-icons/fa';
 
 
@@ -9,14 +9,15 @@ const ProductDetails = () => {
     const { details } = useContext(AuthContext);
     const [loadDetails ,setLoadDetails] = useState({})
     console.log(details)
+    const {id} =useParams();
     useEffect(() => {
-        fetch(`http://localhost:5000/brandDetails/${details}`)
+        fetch(`http://localhost:5000/brandDetails/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
                 setLoadDetails(data)
             })
-    }, [])
+    }, [id])
 
     return (
         /*  This is the Product details page */

@@ -54,7 +54,7 @@ const router = createBrowserRouter([
         element: <BrandNameCards />
       },
       {
-        path: '/brandName/brandDetails',
+        path: '/brandName/brandDetails/:brand',
         element: <BrandDetails></BrandDetails>
         /* loader: () => fetch('http://localhost:5000/brandDetails') */
       },
@@ -63,7 +63,7 @@ const router = createBrowserRouter([
         element: <AddSlider></AddSlider>
       },
       {
-        path: '/details',
+        path: '/details/:id',
         element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
       }
        

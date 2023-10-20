@@ -42,7 +42,7 @@ const BrandSingleProduct = ({ product }) => {
                         <Link><button onClick={addToCart} className="btn btn-secondary">Add to Cart</button></Link>
                     </div>
                     <div className="card-actions justify-center">
-                        <Link to='/details'><button onClick={() => setDetails(_id)} className="btn btn-secondary">Details</button></Link>
+                        <Link to={`/details/${_id}`}><button onClick={() => setDetails(_id)} className="btn btn-secondary">Details</button></Link>
                     </div>
                 </div>
             </div>
