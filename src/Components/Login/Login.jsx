@@ -1,20 +1,21 @@
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { FaGoogle } from 'react-icons/fa';
 import auth from '../../Firebase/Firebase.config';
+import { Link } from 'react-router-dom';
 
 const Login = () => {
 
 
-    const handleGoogleLogIn = ()=>{
+    const handleGoogleLogIn = () => {
         const googleProvider = new GoogleAuthProvider();
-        signInWithPopup(auth,googleProvider)
-        .then(result=>{
-            console.log(result)
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                console.log(result)
 
-        })  
-        .catch(error=>{
-            console.log(error.message)
-        }) ;
+            })
+            .catch(error => {
+                console.log(error.message)
+            });
 
     }
 
@@ -51,7 +52,7 @@ const Login = () => {
                     {/* login with google */}
                     <div className="form-control mt-6">
 
-                        <button onClick={handleGoogleLogIn}  className="btn btn-outline"><FaGoogle className="text-3xl"></FaGoogle> Continue with Google</button>
+                        <button onClick={handleGoogleLogIn} className="btn btn-outline"><FaGoogle className="text-3xl"></FaGoogle> Continue with Google</button>
                     </div>
 
 
@@ -76,6 +77,9 @@ const Login = () => {
                         <input type="password" name='password' placeholder="Enter Your Password" className="input input-bordered" required />
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover text-lg font-semibold">Forgot password?</a>
+                        </label>
+                        <label className="label">
+                            <Link to='/signUp' className="text-blue-600 underline label-text-alt link link-hover text-lg font-semibold">New here? Please signUp</Link>
                         </label>
                     </div>
                     <div className="form-control mt-6">

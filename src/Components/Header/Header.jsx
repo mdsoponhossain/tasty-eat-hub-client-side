@@ -1,18 +1,20 @@
 import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { NavLink } from "react-router-dom";
 import auth from "../../Firebase/Firebase.config";
 import { CgProfile } from 'react-icons/cg';
+import { AuthContext } from "../../ContextProvider/ContextProvider";
 
 
 const Header = () => {
 
-
+    const {setFindUser} = useContext(AuthContext)
     const [user, setUser] = useState([]);
 
 
     onAuthStateChanged(auth, (currentUser) => {
         setUser(currentUser)
+        setFindUser(currentUser)
     })
 
 

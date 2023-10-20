@@ -12,6 +12,7 @@ export const AuthContext = createContext()
 const ContextProvider = ({ children }) => {
     const [brandName, setBrandName] = useState('')
     const [details, setDetails] = useState('');
+    const [findUser,setFindUser] = useState(null);
     
    
 
@@ -20,7 +21,8 @@ const ContextProvider = ({ children }) => {
         setBrandName,
         brandName,
         setDetails,
-        details
+        details,
+        setFindUser
         
         
     }
