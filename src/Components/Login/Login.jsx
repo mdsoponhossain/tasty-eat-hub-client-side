@@ -1,8 +1,26 @@
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { FaGoogle } from 'react-icons/fa';
 import auth from '../../Firebase/Firebase.config';
 
 const Login = () => {
+
+
+    const handleGoogleLogIn = ()=>{
+        const googleProvider = new GoogleAuthProvider();
+        signInWithPopup(auth,googleProvider)
+        .then(result=>{
+            console.log(result)
+
+        })  
+        .catch(error=>{
+            console.log(error.message)
+        }) ;
+
+    }
+
+
+
+
 
     const handleLogIn = (e) => {
         e.preventDefault()
@@ -21,10 +39,6 @@ const Login = () => {
 
 
 
-
-
-
-
     return (
 
         <div className="hero-content flex-col mx-auto ">
@@ -37,7 +51,7 @@ const Login = () => {
                     {/* login with google */}
                     <div className="form-control mt-6">
 
-                        <button className="btn btn-outline"><FaGoogle className="text-3xl"></FaGoogle> Continue with Google</button>
+                        <button onClick={handleGoogleLogIn}  className="btn btn-outline"><FaGoogle className="text-3xl"></FaGoogle> Continue with Google</button>
                     </div>
 
 
