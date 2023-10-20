@@ -3,13 +3,13 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../ContextProvider/ContextProvider";
-// import { AuthContext } from "../../ContextProvider/ContextProvider";
+import { FaStar } from 'react-icons/fa';
 
 
 const BrandSingleProduct = ({ product }) => {
-    const {setDetails} = useContext(AuthContext)
+    const { setDetails } = useContext(AuthContext)
     console.log(product)
-    const { photo, name, brand, description, price, rating, type, _id } = product;
+    const { photo, name, brand, price, rating, type, _id } = product;
 
 
 
@@ -22,10 +22,15 @@ const BrandSingleProduct = ({ product }) => {
                 <p>Type: {type}</p>
                 <p> Brand:{brand}</p>
                 <p>Price:{price}$ </p>
-                <p>{description.slice(0, 70)}</p>
+                <span className="text-xl">Ratings:{rating} <FaStar className="inline mb-1 text-yellow-400"></FaStar> </span>
 
-                <div className="card-actions justify-end">
-                    <Link to='/details'><button onClick={()=>setDetails(_id)} className="btn btn-secondary">Details</button></Link>
+                <div className="grid grid-cols-2">
+                    <div className="card-actions justify-center">
+                        <Link to='/details'><button onClick={() => setDetails(_id)} className="btn btn-secondary">Add to Cart</button></Link>
+                    </div>
+                    <div className="card-actions justify-center">
+                        <Link to='/details'><button onClick={() => setDetails(_id)} className="btn btn-secondary">Details</button></Link>
+                    </div>
                 </div>
             </div>
         </div>

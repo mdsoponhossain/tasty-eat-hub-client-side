@@ -14,6 +14,8 @@ import ContextProvider from './ContextProvider/ContextProvider.jsx';
 import ErrorPage from './ErrorPage/ErrorPage.jsx';
 import AddSlider from './Component2/AddSlider.jsx';
 import ProductDetails from './Component2/ProductDetails/ProductDetails.jsx';
+import PrivateRoute from './Component2/PrivateRoute/PrivateRoute.jsx';
+
 
 
 
@@ -36,11 +38,11 @@ const router = createBrowserRouter([
       },
       {
         path: '/addProduct',
-        element: <AddProduct />
+        element: <PrivateRoute><AddProduct /></PrivateRoute>
       },
       {
         path: '/myCart',
-        element: <MyCart />
+        element:<PrivateRoute><MyCart /></PrivateRoute>
       },
       {
         path: '/signUp',
@@ -62,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/details',
-        element: <ProductDetails></ProductDetails>
+        element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
       }
        
 

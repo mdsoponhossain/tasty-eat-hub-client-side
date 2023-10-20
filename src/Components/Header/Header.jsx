@@ -1,21 +1,17 @@
-import { onAuthStateChanged, signOut } from "firebase/auth";
-import { useContext, useState } from "react";
+import { signOut } from "firebase/auth";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import auth from "../../Firebase/Firebase.config";
 import { CgProfile } from 'react-icons/cg';
 import { AuthContext } from "../../ContextProvider/ContextProvider";
 
 
+
+
 const Header = () => {
 
-    const {setFindUser} = useContext(AuthContext)
-    const [user, setUser] = useState([]);
 
-
-    onAuthStateChanged(auth, (currentUser) => {
-        setUser(currentUser)
-        setFindUser(currentUser)
-    })
+    const { user } = useContext(AuthContext)
 
 
 
@@ -24,19 +20,23 @@ const Header = () => {
         <li><NavLink to='/'> Home </NavLink></li>
         <li><NavLink to='/logIn'> LogIn </NavLink></li>
         <li><NavLink to='/signUp'> SignUp </NavLink></li>
-        <li><NavLink to='/myCart'> My Cart</NavLink></li>
-        <li><NavLink to='/addProduct'>Add Product</NavLink></li>
+        {
+            user && <>
+                <li><NavLink to='/myCart'> My Cart</NavLink></li>
+                <li><NavLink to='/addProduct'>Add Product</NavLink></li>
+            </>
+        }
     </>
 
 
     const handleLogOut = () => {
         return signOut(auth)
-        .then(()=>{
-            console.log('logOut successfully')
-        })
-        .catch(()=>{
-            console.log('fail to logOut')
-        })
+            .then(() => {
+                console.log('logOut successfully')
+            })
+            .catch(() => {
+                console.log('fail to logOut')
+            })
 
     }
 
@@ -54,7 +54,8 @@ const Header = () => {
                         {navlink}
                     </ul>
                 </div>
-                <a className="btn btn-ghost normal-case text-xl">TastyEatsHub.com</a>
+                <img className="w-12 h-12 rounded-3xl" src="https://i.ibb.co/Qvkz1FY/logo-modified.png" />
+                <span className="text-xl">TastyEatsHub.com</span>
             </div>
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
@@ -74,8 +75,11 @@ const Header = () => {
                     user ? <button onClick={handleLogOut} className="btn btn-secondary btn-sm">LogOut</button> : <button className="btn btn-secondary btn-sm">LogIn</button>
                 }
             </div>
+
         </div>
     );
 };
 
 export default Header;
+
+

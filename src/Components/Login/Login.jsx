@@ -2,26 +2,32 @@ import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 
 import { FaGoogle } from 'react-icons/fa';
 import auth from '../../Firebase/Firebase.config';
 import { Link } from 'react-router-dom';
+import {useState } from 'react';
+
 
 const Login = () => {
 
+    const [valid, setValid] = useState(' ')
+    
 
     const handleGoogleLogIn = () => {
         const googleProvider = new GoogleAuthProvider();
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 console.log(result)
+                
 
             })
             .catch(error => {
-                console.log(error.message)
+                console.log(error.message);
+                
             });
 
     }
 
 
 
-
+    
 
     const handleLogIn = (e) => {
         e.preventDefault()
@@ -29,14 +35,18 @@ const Login = () => {
         const email = form.email.value;
         const password = form.password.value;
         console.log(email, password);
+        setValid(' ')
         signInWithEmailAndPassword(auth, email, password)
+        
             .then(result => {
                 console.log(result.user)
             })
             .catch(error => {
                 console.log(error.message)
+                setValid(error.message)
             })
     }
+        
 
 
 
@@ -76,7 +86,7 @@ const Login = () => {
                         </label>
                         <input type="password" name='password' placeholder="Enter Your Password" className="input input-bordered" required />
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover text-lg font-semibold">Forgot password?</a>
+                            <span  className="label-text-alt  text-lg font-semibold text-red-500">{valid}</span>
                         </label>
                         <label className="label">
                             <Link to='/signUp' className="text-blue-600 underline label-text-alt link link-hover text-lg font-semibold">New here? Please signUp</Link>
