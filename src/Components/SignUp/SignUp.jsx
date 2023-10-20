@@ -1,6 +1,31 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import auth from "../../Firebase/Firebase.config";
 
 
 const SignUp = () => {
+
+    /* signUp with email and password */
+
+
+    const handleSignUp = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
+
+        createUserWithEmailAndPassword(auth,email,password)
+        .then(result=>{
+            console.log(result.user)
+        })
+        .catch(error=>{
+            console.log(error.message)
+        })
+    }
+
+
+
+
     return (
         <div className="hero-content flex-col mx-auto ">
             <div className="text-center">
@@ -8,18 +33,18 @@ const SignUp = () => {
 
             </div>
             <div className="card flex-shrink-0 w-full max-w-xl shadow-2xl bg-base-100">
-                <form className="card-body">
+                <form onSubmit={handleSignUp} className="card-body">
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl font-bold">Email</span>
                         </label>
-                        <input type="email" placeholder="Enter Your Email" className="input input-bordered" required />
+                        <input type="email" name="email" placeholder="Enter Your Email" className="input input-bordered" required />
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text text-xl font-bold">Password</span>
                         </label>
-                        <input type="password" placeholder="Enter Your Password" className="input input-bordered" required />
+                        <input type="password" name="password" placeholder="Enter Your Password" className="input input-bordered" required />
                         <label className="label">
                             <a href="#" className="label-text-alt link link-hover text-lg font-semibold">Forgot password?</a>
                         </label>

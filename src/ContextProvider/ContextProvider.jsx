@@ -1,19 +1,28 @@
+
 import { createContext, useState } from "react";
+
 
 
 
 
 export const AuthContext = createContext()
 
-const ContextProvider = ({children}) => {
-    const [brandName,setBrandName] =useState('')
-    const [details ,setDetails] = useState('');
+const ContextProvider = ({ children }) => {
+    const [brandName, setBrandName] = useState('')
+    const [details, setDetails] = useState('');
+  
 
-    const info={
+
+
+   
+
+
+    const info = {
         setBrandName,
         brandName,
         setDetails,
         details
+        
     }
 
     return (
