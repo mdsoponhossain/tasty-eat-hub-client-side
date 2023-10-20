@@ -1,5 +1,6 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../Firebase/Firebase.config";
+import { Link } from "react-router-dom";
 
 
 const SignUp = () => {
@@ -46,7 +47,7 @@ const SignUp = () => {
                         </label>
                         <input type="password" name="password" placeholder="Enter Your Password" className="input input-bordered" required />
                         <label className="label">
-                            <a href="#" className="label-text-alt link link-hover text-lg font-semibold">Forgot password?</a>
+                            <Link to='/logIn' className="underline text-blue-500 label-text-alt link link-hover text-lg font-semibold">Have an account? please logIn</Link>
                         </label>
                     </div>
                     <div className="form-control mt-6">
