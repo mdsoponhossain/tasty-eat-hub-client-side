@@ -71,6 +71,7 @@ const router = createBrowserRouter([
         path:'/updateProduct',
         element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
       }
+      
        
 
 
