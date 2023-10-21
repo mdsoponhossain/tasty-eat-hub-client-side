@@ -15,6 +15,7 @@ import ErrorPage from './ErrorPage/ErrorPage.jsx';
 import AddSlider from './Component2/AddSlider.jsx';
 import ProductDetails from './Component2/ProductDetails/ProductDetails.jsx';
 import PrivateRoute from './Component2/PrivateRoute/PrivateRoute.jsx';
+import UpdateProduct from './Component2/UpdateProduct/UpdateProduct.jsx';
 
 
 
@@ -60,11 +61,15 @@ const router = createBrowserRouter([
       },
       {
         path: '/addSlider',
-        element: <AddSlider></AddSlider>
+        element: <PrivateRoute><AddSlider></AddSlider></PrivateRoute>
       },
       {
         path: '/details/:id',
         element: <PrivateRoute><ProductDetails></ProductDetails></PrivateRoute>
+      },
+      {
+        path:'/updateProduct',
+        element:<PrivateRoute><UpdateProduct></UpdateProduct></PrivateRoute>
       }
        
 

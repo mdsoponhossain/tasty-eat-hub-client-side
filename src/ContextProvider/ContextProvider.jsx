@@ -15,6 +15,8 @@ export const AuthContext = createContext()
 const ContextProvider = ({ children }) => {
     const [brandName, setBrandName] = useState('')
     const [details, setDetails] = useState('');
+    const [updateId ,setUpdateId] = useState('')
+    
     
     
     const [user, setUser] = useState([]);
@@ -35,7 +37,9 @@ const ContextProvider = ({ children }) => {
         brandName,
         setDetails,
         details,
-        user
+        user,
+        setUpdateId,
+        updateId
         
         
     }

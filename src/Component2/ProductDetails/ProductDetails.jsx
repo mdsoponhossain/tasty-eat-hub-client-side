@@ -6,7 +6,7 @@ import { FaStar } from 'react-icons/fa';
 
 
 const ProductDetails = () => {
-    const { details } = useContext(AuthContext);
+    const { details,setUpdateId } = useContext(AuthContext);
     const [loadDetails ,setLoadDetails] = useState({})
     console.log(details)
     const {id} =useParams();
@@ -19,6 +19,7 @@ const ProductDetails = () => {
             })
     }, [id])
 
+    
     return (
         /*  This is the Product details page */
         <div className="card card-compact  bg-base-100 shadow-xl">
@@ -33,7 +34,7 @@ const ProductDetails = () => {
                 <p> Details: {loadDetails.description}</p>
                 <div className="card-actions justify-center">
                     <Link to={-1}><button className="btn btn-secondary">Go back</button></Link>
-                    <button className="btn btn-secondary">Add to Cart</button>
+                    <Link to='/updateProduct'><button onClick={()=>setUpdateId(loadDetails._id)} className="btn btn-secondary">Update</button></Link>
                 </div>
             </div>
         </div>

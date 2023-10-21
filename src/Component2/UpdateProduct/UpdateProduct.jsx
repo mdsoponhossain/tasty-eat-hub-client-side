@@ -1,7 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../ContextProvider/ContextProvider";
+import { Link } from "react-router-dom";
 
 
-const AddProduct = () => {
+
+const UpdateProduct = () => {
+    const { updateId } = useContext(AuthContext)
+    const [update, setUpdate] = useState({})
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/brandDetails/${updateId}`)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+                setUpdate(data)
+            })
+    }, [updateId])
+    console.log(update)
+
     const [rating, setRating] = useState('');
     const [type, setType] = useState(' ');
     const [brand, setBrand] = useState(' ');
@@ -24,7 +40,6 @@ const AddProduct = () => {
         setType(type)
     }
 
-
     const formSubmitHandle = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -32,39 +47,39 @@ const AddProduct = () => {
         const name = form.name.value;
         const price = form.price.value;
         const description = form.description.value;
-        const productDetails = { photo, name, price, description }
-        productDetails.rating = rating
-        productDetails.type = type
-        productDetails.brand = brand;
-        console.log(productDetails)
-        fetch('http://localhost:5000/product', {
-            method: 'POST',
+        const UpdateProductDetails = { photo, name, price, description }
+        UpdateProductDetails.rating = rating
+        UpdateProductDetails.type = type
+        UpdateProductDetails.brand = brand;
+        console.log(UpdateProductDetails)
+
+        fetch(`http://localhost:5000/brandDetails/${update._id}`, {
+            method: 'PUT',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(productDetails)
+            body: JSON.stringify(UpdateProductDetails)
         })
             .then(res => res.json())
             .then(data => {
                 console.log(data)
             })
-
     }
 
 
     return (
         <div className="border-4 w-full lg:w-3/4 mx-auto">
-            <h3 className="text-center">Add a Product here</h3>
-            <form className="card-body" onSubmit={formSubmitHandle}>
+            <h3 className="text-center">Update a Product here</h3>
+            <form onSubmit={formSubmitHandle} className="card-body">
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Photo URL</span>
                     </label>
-                    <input type="text" name="photo" placeholder="Enter Product Photo URL" className="input input-bordered" required />
+                    <input type="text" defaultValue={update.photo} name="photo" placeholder="Enter Product Photo URL" className="input input-bordered" required />
                 </div>
                 <div className="form-control">
                     <label className="label">
                         <span className="label-text">Product Name</span>
                     </label>
-                    <input type="text" name='name' placeholder="Product Name" className="input input-bordered" required />
+                    <input type="text" name='name' defaultValue={update.name} placeholder="Product Name" className="input input-bordered" required />
 
                 </div>
 
@@ -74,14 +89,14 @@ const AddProduct = () => {
                         <label className="label">
                             <span className="label-text">Price</span>
                         </label>
-                        <input type="text" name='price' placeholder="Price" className="input input-bordered" required />
+                        <input type="text" defaultValue={update.price} name='price' placeholder="Price" className="input input-bordered" required />
 
                     </div>
                     <div className="form-control">
                         <label className="label">
                             <span className="label-text">Select Brand</span>
                         </label>
-                        <select name="brand" id="brand" onChange={brandNameHandle}  >
+                        <select name="brand" id="brand" onChange={brandNameHandle} >
                             <option value="Coca-Cola">Coca-Cola</option>
                             <option value="McDonald's">McDonald's</option>
                             <option value="Starbucks">Starbucks</option>
@@ -117,20 +132,20 @@ const AddProduct = () => {
 
                     </div>
                 </div>
-                
                 <div className="" >
                     <label className="label">
                         <span className="label-text">Product Description</span>
                     </label>
-                    <input type="text"  name="description" placeholder="Write description here ..." className="input w-[90%] h-28 input-bordered" required />
+                    <input type="text" defaultValue={update.description} name="description" placeholder="Write description here ..." className="input w-[90%] h-28 input-bordered" required />
                 </div>
 
-                <div className="form-control mt-6">
-                    <button className="btn btn-secondary">Login</button>
+                <div className="card-actions justify-center ">
+                    <Link to={-1}><button className="btn btn-secondary">Go back</button></Link>
+                    <button className="btn btn-secondary">Confirm</button>
                 </div>
             </form>
         </div>
     );
 };
 
-export default AddProduct;
+export default UpdateProduct;
