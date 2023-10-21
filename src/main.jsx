@@ -57,7 +57,7 @@ const router = createBrowserRouter([
       {
         path: '/brandName/brandDetails/:brand',
         element: <BrandDetails></BrandDetails>
-        /* loader: () => fetch('https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails') */
+        /* loader: () => fetch('https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/brandDetails') */
       },
       {
         path: '/addSlider',

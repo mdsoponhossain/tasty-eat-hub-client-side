@@ -12,13 +12,18 @@ import Swal from "sweetalert2";
 const BrandSingleProduct = ({ product }) => {
     const { setDetails,user } = useContext(AuthContext)
     console.log(product)
-    const { photo, name, brand, price, rating, type, _id } = product;
+    const {   photo, name, brand, price, rating, type } = product;
+    const {_id} = {...product}
+    
+    
+    let id = _id ;
+    
 
     const addToCart = ()=>{
         delete product._id ;
         product.userEmail =user?.email;
         console.log(product)
-        fetch("https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/userCart",{
+        fetch("https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/userCart",{
             method:'POST',
             headers:{'content-type':'application/json'},
             body:JSON.stringify(product)
@@ -54,7 +59,7 @@ const BrandSingleProduct = ({ product }) => {
                         }
                     </div>
                     <div className="card-actions justify-center">
-                        <Link to={`/details/${_id}`}><button onClick={() => setDetails(_id)} className="btn btn-secondary">Details</button></Link>
+                        <Link to={`/details/${id}`}><button onClick={() => setDetails(id)} className="btn btn-secondary">Details</button></Link>
                     </div>
                 </div>
             </div>

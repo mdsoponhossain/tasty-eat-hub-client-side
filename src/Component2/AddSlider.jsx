@@ -6,7 +6,7 @@ const AddSlider = ({brandName}) => {
     // const {brandName} = useContext(AuthContext)
     const [sliderData, setSliderData] = useState([]);
     useEffect(() => {
-        fetch('https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/slider')
+        fetch('https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/slider')
             .then(res => res.json())
             .then(data => {
                 const brandSlider = data.find(brandSlider=>brandSlider.brand === brandName)

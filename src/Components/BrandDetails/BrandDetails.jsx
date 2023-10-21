@@ -10,8 +10,8 @@ import AddSlider from "../../Component2/AddSlider";
 
 const BrandDetails = () => {
 
-    const brandsProducts = useLoaderData();
-    console.log(brandsProducts)
+    // const brandsProducts = useLoaderData();
+    // console.log(brandsProducts)
     const [allProducts, setAllProducts] = useState([]);
     // let { setBrandName } = useContext(AuthContext)
     const { brand } = useParams();
@@ -20,7 +20,7 @@ const BrandDetails = () => {
     
 
     useEffect(() => {
-        fetch('https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails')
+        fetch('https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/brandDetails')
             .then(res => res.json())
             .then(data => {
                 console.log(data)

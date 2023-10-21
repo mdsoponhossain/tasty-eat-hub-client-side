@@ -1,6 +1,6 @@
 import { signOut } from "firebase/auth";
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import auth from "../../Firebase/Firebase.config";
 import { CgProfile } from 'react-icons/cg';
 import { AuthContext } from "../../ContextProvider/ContextProvider";
@@ -72,7 +72,7 @@ const Header = () => {
 
 
                 {
-                    user ? <button onClick={handleLogOut} className="btn btn-secondary btn-sm">LogOut</button> : <button className="btn btn-secondary btn-sm">LogIn</button>
+                    user ? <button onClick={handleLogOut} className="btn btn-secondary btn-sm">LogOut</button> : <Link to='/login'><button className="btn btn-secondary btn-sm">LogIn</button></Link>
                 }
             </div>
 

@@ -19,7 +19,7 @@ const Login = () => {
             .then(result => {
                 console.log(result)
                 navigate(location?.state ? location.state : '/')
-                Swal('You have successfully logged in ')
+                new Swal('You have successfully logged in ')
 
             })
             .catch(error => {
@@ -44,7 +44,7 @@ const Login = () => {
         
             .then(result => {
                 console.log(result.user);
-                Swal('You have successfully logged in ')
+                new Swal('You have successfully logged in ')
 
             })
             .catch(error => {

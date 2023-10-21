@@ -37,7 +37,7 @@ const AddProduct = () => {
         productDetails.type = type
         productDetails.brand = brand;
         console.log(productDetails)
-        fetch('https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/product', {
+        fetch('https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/product', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
             body: JSON.stringify(productDetails)

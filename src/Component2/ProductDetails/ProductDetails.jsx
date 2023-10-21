@@ -12,7 +12,7 @@ const ProductDetails = () => {
     console.log(details)
     const {id} =useParams();
     useEffect(() => {
-        fetch(`https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails/${id}`)
+        fetch(`https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/brandDetails/${id}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);

@@ -10,7 +10,7 @@ const UpdateProduct = () => {
     const [update, setUpdate] = useState({})
 
     useEffect(() => {
-        fetch(`https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails/${updateId}`)
+        fetch(`https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/brandDetails/${updateId}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data);
@@ -66,7 +66,7 @@ const UpdateProduct = () => {
             confirmButtonText: 'Yes, update it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails/${update._id}`, {
+                fetch(`https://tasty-eats-hub-server-51lgk2gqk-sopon.vercel.app/brandDetails/${update._id}`, {
                     method: 'PUT',
                     headers: { 'content-type': 'application/json' },
                     body: JSON.stringify(UpdateProductDetails)
