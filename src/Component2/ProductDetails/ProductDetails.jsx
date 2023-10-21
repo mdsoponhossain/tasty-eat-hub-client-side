@@ -5,6 +5,7 @@ import { FaStar } from 'react-icons/fa';
 
 
 
+
 const ProductDetails = () => {
     const { details,setUpdateId } = useContext(AuthContext);
     const [loadDetails ,setLoadDetails] = useState({})

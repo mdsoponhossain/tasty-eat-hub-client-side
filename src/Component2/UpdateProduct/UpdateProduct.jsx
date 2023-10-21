@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../ContextProvider/ContextProvider";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 
@@ -53,16 +54,49 @@ const UpdateProduct = () => {
         UpdateProductDetails.brand = brand;
         console.log(UpdateProductDetails)
 
-        fetch(`http://localhost:5000/brandDetails/${update._id}`, {
-            method: 'PUT',
-            headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(UpdateProductDetails)
+
+
+        Swal.fire({
+            title: 'Are you sure to update?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, update it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/brandDetails/${update._id}`, {
+                    method: 'PUT',
+                    headers: { 'content-type': 'application/json' },
+                    body: JSON.stringify(UpdateProductDetails)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                        if (data.modifiedCount) {
+                            Swal.fire(
+                                'Good job!',
+                                'You product is successfully updated !',
+                                'success'
+                            )
+                        }
+                    })
+            }
         })
-            .then(res => res.json())
-            .then(data => {
-                console.log(data)
-            })
+
+
+
+
     }
+
+
+
+
+
+
+
+
 
 
     return (

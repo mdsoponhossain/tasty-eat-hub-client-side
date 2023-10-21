@@ -4,6 +4,9 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../ContextProvider/ContextProvider";
 import { FaStar } from 'react-icons/fa';
+import Swal from "sweetalert2";
+
+
 
 
 const BrandSingleProduct = ({ product }) => {
@@ -23,6 +26,13 @@ const BrandSingleProduct = ({ product }) => {
         .then(res=>res.json())
         .then(data=>{
             console.log(data)
+            if(data.insertedId){
+                Swal.fire(
+                    'Good job!',
+                    'Add to cart successfully completed',
+                    'success'
+                  )
+            }
         })
     }
 
