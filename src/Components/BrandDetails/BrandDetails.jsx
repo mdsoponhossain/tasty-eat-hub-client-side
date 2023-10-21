@@ -20,7 +20,7 @@ const BrandDetails = () => {
     
 
     useEffect(() => {
-        fetch('http://localhost:5000/brandDetails')
+        fetch('https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/brandDetails')
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -33,7 +33,7 @@ const BrandDetails = () => {
         <div>
             <AddSlider brandName={brandName} ></AddSlider>
             <div>
-                <h3 className="text-3xl text-center">this is the brand details page :{allProducts.length}</h3>
+                <h3 className="text-3xl text-center">Products :{allProducts.length}</h3>
                 <div className="grid md:grid-cols-2 gap-5">
                     {
                         allProducts.map(product => <BrandSingleProduct key={product._id} product={product}> </BrandSingleProduct>)

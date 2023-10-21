@@ -18,7 +18,7 @@ const BrandSingleProduct = ({ product }) => {
         delete product._id ;
         product.userEmail =user?.email;
         console.log(product)
-        fetch("http://localhost:5000/userCart",{
+        fetch("https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/userCart",{
             method:'POST',
             headers:{'content-type':'application/json'},
             body:JSON.stringify(product)

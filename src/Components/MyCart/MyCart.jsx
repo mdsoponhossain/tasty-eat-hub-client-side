@@ -11,7 +11,7 @@ const MyCart = () => {
     const [addCarts, setAddCarts] = useState([]);
     const { user } = useContext(AuthContext)
     useEffect(() => {
-        fetch(`http://localhost:5000/userCart/${user?.email}`)
+        fetch(`https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/userCart/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -34,7 +34,7 @@ const MyCart = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                fetch(`http://localhost:5000/userCart/${id}`, {
+                fetch(`https://tasty-eats-hub-server-exvosh0tl-sopon.vercel.app/userCart/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())
@@ -65,13 +65,13 @@ const MyCart = () => {
     return (
         <div>
             <h3>This is the My cart component:{addCarts.length} </h3>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3  gap-4">
 
                 {
                     addCarts.map((addCart, index) => <p key={index}>
 
                         <div className="card  bg-base-100 shadow-xl">
-                            <figure><img src={addCart.photo} /></figure>
+                            <figure><img className="w-full" src={addCart.photo} /></figure>
 
                             <div className="card-body">
                                 <h2 className="card-title">{addCart.name}</h2>

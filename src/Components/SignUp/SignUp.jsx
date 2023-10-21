@@ -1,13 +1,15 @@
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../Firebase/Firebase.config";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {
 
     /* signUp with email and password */
     const [error, setError] = useState(' ')
+    const navigate = useNavigate()
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -28,9 +30,13 @@ const SignUp = () => {
 
         createUserWithEmailAndPassword(auth, email, password)
             .then(result => {
-                console.log(result.user)
+                console.log(result.user);
+           new  Swal('You have successfully signUp ')
+           navigate('/')
+                
             })
             .catch(error => {
+                setError(error.message)
                 console.log(error.message)
             })
     }

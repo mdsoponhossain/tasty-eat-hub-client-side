@@ -1,13 +1,16 @@
 import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
 import { FaGoogle } from 'react-icons/fa';
 import auth from '../../Firebase/Firebase.config';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import {useState } from 'react';
+import Swal from 'sweetalert2';
 
 
 const Login = () => {
 
     const [valid, setValid] = useState(' ')
+    const navigate = useNavigate();
+    const location = useLocation();
     
 
     const handleGoogleLogIn = () => {
@@ -15,7 +18,8 @@ const Login = () => {
         signInWithPopup(auth, googleProvider)
             .then(result => {
                 console.log(result)
-                
+                navigate(location?.state ? location.state : '/')
+                Swal('You have successfully logged in ')
 
             })
             .catch(error => {
@@ -39,7 +43,9 @@ const Login = () => {
         signInWithEmailAndPassword(auth, email, password)
         
             .then(result => {
-                console.log(result.user)
+                console.log(result.user);
+                Swal('You have successfully logged in ')
+
             })
             .catch(error => {
                 console.log(error.message)
